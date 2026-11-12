@@ -1,18 +1,30 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sistema de gestión de pedidos para la cadena de restaurantes Brasa Norte",
+  "main": "server.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "iniciar": "node servidor.js",
+    "desarrollo": "nodemon servidor.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "restaurantes",
+    "pedidos",
+    "inventario"
+  ],
+  "author": "Brasa Norte",
+  "license": "MIT",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^18.0.10",
     "express": "^5.3.0",
-    "mongodb": "^7.8.0"
+    "jsonwebtoken": "^9.0.3",
+    "mongodb-client-encryption": "^7.2.2",
+    "mongoose": "^9.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

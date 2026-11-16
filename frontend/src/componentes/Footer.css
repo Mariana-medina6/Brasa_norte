@@ -1,0 +1,21 @@
+
+.footer {
+  background-color: var(--negro-carbon);
+  color: var(--gris-claro);
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-regiones {
+  margin-top: 0.5rem;
+  color: var(--naranja-llama);
+  font-size: 0.85rem;
+}

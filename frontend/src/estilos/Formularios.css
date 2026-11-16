@@ -1,0 +1,103 @@
+
+
+.form-pagina {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 2rem 1rem;
+}
+
+.form-tarjeta {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-titulo {
+  color: var(--marron-madera);
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitulo {
+  color: var(--gris-texto);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.form-error {
+  background-color: #fee;
+  color: var(--rojo-brasa);
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--rojo-brasa);
+}
+
+.form-campos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--marron-madera);
+  font-weight: 500;
+}
+
+.form-input {
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--naranja-llama);
+}
+
+.form-boton {
+  background-color: var(--rojo-brasa);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.form-boton:hover:not(:disabled) {
+  background-color: var(--naranja-llama);
+}
+
+.form-boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-pie {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+}
+
+.form-ayuda {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.8rem;
+}

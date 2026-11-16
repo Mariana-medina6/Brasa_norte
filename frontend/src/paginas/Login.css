@@ -1,0 +1,45 @@
+
+.login-divisor {
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+  position: relative;
+}
+
+.login-divisor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #eee;
+  z-index: 0;
+}
+
+.login-divisor span {
+  background-color: white;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+  color: var(--gris-texto);
+  font-size: 0.9rem;
+}
+
+.login-boton-registro {
+  display: block;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid var(--rojo-brasa);
+  color: var(--rojo-brasa);
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.login-boton-registro:hover {
+  background-color: var(--rojo-brasa);
+  color: white;
+  text-decoration: none;
+}

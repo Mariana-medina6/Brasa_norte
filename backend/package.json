@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
-    "iniciar": "node servidor.js",
-    "desarrollo": "nodemon servidor.js"
+    "iniciar": "node server.js",
+    "desarrollo": "nodemon server.js"
   },
   "keywords": [
     "restaurantes",

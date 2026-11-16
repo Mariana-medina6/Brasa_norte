@@ -1,0 +1,15 @@
+﻿﻿fecha,accion,usuario_tipo,usuario_id,detalles,ip
+2026-11-16T04:45:38.583Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1
+2026-11-16T04:45:34.414Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1
+2026-11-16T04:43:43.755Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1
+2026-11-16T04:27:30.349Z,subir_imagen_producto,empleado,6af8ef3d35f8e47eeb15abe0,"{""producto_id"":""6af8ef3c35f8e47eeb15abbe"",""nombre"":""Agua de horchata"",""tamano_base64"":118}",::1
+2026-11-16T04:27:21.244Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1
+2026-11-16T04:24:46.343Z,actualizar_producto,empleado,6af8ef3d35f8e47eeb15abe0,"{""producto_id"":""6af8ef3c35f8e47eeb15abbe"",""nombre"":""Agua de horchata"",""cambios"":{""imagen_base64"":null}}",::1
+2026-11-16T04:24:35.394Z,actualizar_producto,empleado,6af8ef3d35f8e47eeb15abe0,"{""producto_id"":""6af8ef3c35f8e47eeb15abbe"",""nombre"":""Agua de horchata"",""cambios"":{""imagen_base64"":""data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==""}}",::1
+2026-11-16T04:23:44.836Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1
+2026-11-15T15:27:27.931Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abdf,"{""email"":""cocina@brasa.com"",""puesto"":""cocina""}",::1
+2026-11-15T15:27:06.402Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abde,"{""email"":""repartidor@brasa.com"",""puesto"":""repartidor""}",::1
+2026-11-15T15:26:29.435Z,crear_pedido,cliente,6af8e2a541ccb3eb86d1b8a5,"{""pedido_id"":""6af9cf2528764dfb1e35c573"",""total"":150,""sucursal_id"":""6af8ef3c35f8e47eeb15abb6"",""tipo"":""domicilio"",""productos"":[{""nombre"":""Taco al pastor"",""cantidad"":1},{""nombre"":""Guacamole"",""cantidad"":1},{""nombre"":""Agua de horchata"",""cantidad"":1}]}",::1
+2026-11-15T15:21:45.869Z,crear_empleado,empleado,6af8ef3d35f8e47eeb15abe0,"{""empleado_id"":""6af9ce0928764dfb1e35c566"",""email"":""luis@brasa.com"",""puesto"":""administrador_sucursal"",""sucursal_id"":""6af8ef3c35f8e47eeb15abb7"",""creado_por_admin_de"":""6af8ef3c35f8e47eeb15abb6""}",::1
+2026-11-15T15:20:47.309Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1
+2026-11-15T07:20:35.327Z,login_empleado_exitoso,empleado,6af8ef3d35f8e47eeb15abe0,"{""email"":""admin@brasa.com"",""puesto"":""administrador_sucursal""}",::1

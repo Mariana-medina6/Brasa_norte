@@ -1,122 +1,209 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { ProveedorAutenticacion, useAutenticacion } from './contextos/ContextoAutenticacion';
+import { ProveedorCarrito, useCarrito } from './contextos/CarritoContext';
+import { ConfirmProvider, useConfirm } from './contextos/ConfirmProvider';
+import { crearPedido } from './servicios/pedidos';
+import { obtenerSucursales } from './servicios/sucursales';
+import Header from './componentes/Header';
+import Footer from './componentes/Footer';
+import CarritoModal from './componentes/CarritoModal';
+import BotonCarritoFlotante from './componentes/BotonCarritoFlotante';
+import ModalConfirmarPedido from './componentes/ModalConfirmarPedido';
+import RutaProtegida from './componentes/RutaProtegida';
+import SelectorSucursal from './componentes/SelectorSucursal';
+import Login from './paginas/Login';
+import Registro from './paginas/Registro';
+import LoginEmpleado from './paginas/LoginEmpleado';
+import Menu from './paginas/Menu';
+import MisPedidos from './paginas/MisPedidos';
+import PanelMostrador from './paginas/PanelMostrador';
+import PanelCocina from './paginas/PanelCocina';
+import PanelRepartidor from './paginas/PanelRepartidor';
+import PanelAdminSucursal from './paginas/PanelAdminSucursal';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+function Inicio() {
+  const { cliente, empleado, cargando } = useAutenticacion();
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+  if (empleado) {
+    if (empleado.puesto === 'administrador_sucursal') {
+      return <Navigate to="/admin/sucursal" replace />;
+    } else if (empleado.puesto === 'cocina') {
+      return <Navigate to="/empleado/cocina" replace />;
+    } else if (empleado.puesto === 'repartidor') {
+      return <Navigate to="/empleado/repartidor" replace />;
+    } else if (empleado.puesto === 'mostrador') {
+      return <Navigate to="/empleado/mostrador" replace />;
+    }
+  }
 
-      <div className="ticks"></div>
+  if (cliente) {
+    return (
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem 1rem' }}>
+        <SelectorSucursal />
+      </div>
+    );
+  }
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  if (cargando) {
+    return <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando...</div>;
+  }
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  return <Navigate to="/login" replace />;
 }
 
-export default App
+function ContenidoApp() {
+  const [carritoAbierto, setCarritoAbierto] = useState(false);
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [errorPedido, setErrorPedido] = useState('');
+
+  const { cliente } = useAutenticacion();
+  const { items, vaciar } = useCarrito();
+  const { confirmar, toast } = useConfirm();
+  const navigate = useNavigate();
+
+  function manejarAbrirModal() {
+    if (!cliente) {
+      setCarritoAbierto(false);
+      toast('Inicia sesión para confirmar tu pedido.', 'error');
+      navigate('/login');
+      return;
+    }
+    if (items.length === 0) return;
+    setErrorPedido('');
+    setModalAbierto(true);
+    setCarritoAbierto(false);
+  }
+
+  async function manejarConfirmarPedido({ tipo, telefono, direccion }) {
+    setEnviando(true);
+    setErrorPedido('');
+    const sucursalId = sessionStorage.getItem('sucursal_id');
+    if (!sucursalId) {
+      setErrorPedido('No hay sucursal seleccionada. Vuelve al menú.');
+      setEnviando(false);
+      return;
+    }
+    const datos = {
+      sucursal_id: sucursalId,
+      tipo,
+      telefono_contacto: telefono,
+      direccion_entrega: tipo === 'domicilio' ? direccion : undefined,
+      productos: items.map((item) => ({
+        producto_id: item.producto._id,
+        cantidad: item.cantidad,
+      })),
+    };
+    try {
+      await crearPedido(datos);
+      vaciar();
+      setModalAbierto(false);
+      toast('¡Pedido creado correctamente!', 'success');
+      navigate('/mis-pedidos');
+    } catch (err) {
+      const mensaje = err.response?.data?.error || 'Error al crear el pedido.';
+      setErrorPedido(mensaje);
+    } finally {
+      setEnviando(false);
+    }
+  }
+
+  return (
+    <div className="app-layout">
+      <Header />
+      <main className="app-main">
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/empleado/login" element={<LoginEmpleado />} />
+          <Route
+            path="/empleado/cocina"
+            element={
+              <RutaProtegida requiereTipo="empleado" requierePuesto={['cocina']}>
+                <PanelCocina />
+              </RutaProtegida>
+            }
+          />
+          <Route
+            path="/empleado/mostrador"
+            element={
+              <RutaProtegida requiereTipo="empleado" requierePuesto={['mostrador']}>
+                <PanelMostrador />
+              </RutaProtegida>
+            }
+          />
+          <Route
+            path="/empleado/repartidor"
+            element={
+              <RutaProtegida requiereTipo="empleado" requierePuesto={['repartidor']}>
+                <PanelRepartidor />
+              </RutaProtegida>
+            }
+          />
+          <Route
+            path="/admin/sucursal"
+            element={
+              <RutaProtegida requiereTipo="empleado" requierePuesto={['administrador_sucursal']}>
+                <PanelAdminSucursal />
+              </RutaProtegida>
+            }
+          />
+          <Route
+            path="/menu"
+            element={
+              <RutaProtegida requiereTipo="cliente">
+                <Menu />
+              </RutaProtegida>
+            }
+          />
+          <Route
+            path="/mis-pedidos"
+            element={
+              <RutaProtegida requiereTipo="cliente">
+                <MisPedidos />
+              </RutaProtegida>
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
+
+      {cliente && (
+        <BotonCarritoFlotante onAbrir={() => setCarritoAbierto(true)} />
+      )}
+
+      <CarritoModal
+        abierto={carritoAbierto}
+        onCerrar={() => setCarritoAbierto(false)}
+        onConfirmar={manejarAbrirModal}
+      />
+
+      <ModalConfirmarPedido
+        abierto={modalAbierto}
+        onCerrar={() => setModalAbierto(false)}
+        onConfirmar={manejarConfirmarPedido}
+        enviando={enviando}
+        error={errorPedido}
+      />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ProveedorAutenticacion>
+      <ConfirmProvider>
+        <ProveedorCarrito>
+          <BrowserRouter>
+            <ContenidoApp />
+          </BrowserRouter>
+        </ProveedorCarrito>
+      </ConfirmProvider>
+    </ProveedorAutenticacion>
+  );
+}
+
+export default App;

@@ -1,0 +1,141 @@
+
+.menu-header-sucursal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--gris-claro);
+}
+
+.menu-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-titulo {
+  font-size: 2rem;
+  color: var(--marron-madera);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.menu-sucursal-actual {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.menu-sucursal-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gris-texto);
+}
+
+.menu-sucursal-nombre {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--marron-madera);
+}
+
+.menu-region-badge {
+  display: inline-block;
+  background-color: var(--rojo-brasa);
+  color: white;
+  padding: 0.15rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.menu-boton-cambiar {
+  background-color: transparent;
+  color: var(--marron-madera);
+  border: 1.5px solid var(--gris-claro);
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  white-space: nowrap;
+  align-self: flex-end;
+}
+
+.menu-boton-cambiar:hover {
+  border-color: var(--rojo-brasa);
+  color: var(--rojo-brasa);
+  background-color: rgba(178, 34, 34, 0.04);
+}
+
+.menu-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.menu-estado {
+  text-align: center;
+  padding: 2rem;
+  color: var(--gris-texto);
+}
+
+.menu-error {
+  background-color: #fee;
+  color: var(--rojo-brasa);
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+
+.menu-categoria {
+  margin-bottom: 2rem;
+}
+
+.menu-categoria-titulo {
+  font-size: 1.2rem;
+  color: var(--marron-madera);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--naranja-llama);
+  margin-bottom: 1rem;
+}
+
+.menu-categoria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+
+@media (max-width: 600px) {
+  .menu-header-sucursal {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .menu-boton-cambiar {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .menu-titulo {
+    font-size: 1.6rem;
+  }
+
+  .menu-categoria-grid {
+    grid-template-columns: 1fr;
+  }
+}

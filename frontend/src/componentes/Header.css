@@ -1,0 +1,230 @@
+
+.header {
+  background-color: var(--negro-carbon);
+  color: var(--crema);
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  border-bottom: 2px solid rgba(255, 107, 26, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-contenedor {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+
+.header-izquierda {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--crema);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.header-marca:hover {
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+
+.header-logo-wrap {
+  height: 64px;
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background-color: #ffffff;
+  padding: 6px 14px;
+  border: 2px solid var(--naranja-llama);
+  box-shadow:
+    0 0 0 3px rgba(255, 107, 26, 0.15),
+    0 4px 16px rgba(255, 107, 26, 0.35);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.header-marca:hover .header-logo-wrap {
+  transform: rotate(-3deg) scale(1.04);
+  border-color: var(--rojo-brasa);
+  box-shadow:
+    0 0 0 3px rgba(255, 107, 26, 0.25),
+    0 6px 22px rgba(255, 107, 26, 0.55);
+}
+
+.header-logo-img {
+  height: 100%;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  display: block;
+}
+
+.header-nombre-marca {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  background: linear-gradient(90deg, var(--naranja-llama), var(--rojo-brasa));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--naranja-llama);
+  white-space: nowrap;
+}
+
+
+.header-saludo {
+  color: var(--gris-claro);
+  font-size: 0.95rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(232, 224, 213, 0.2);
+}
+
+.header-saludo strong {
+  color: var(--naranja-llama);
+  font-weight: 700;
+}
+
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header-enlace {
+  color: var(--gris-claro);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.4rem 0;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.header-enlace::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--naranja-llama);
+  transition: width 0.25s;
+}
+
+.header-enlace:hover {
+  color: var(--naranja-llama);
+  text-decoration: none;
+}
+
+.header-enlace:hover::after {
+  width: 100%;
+}
+
+
+.header-boton-salir {
+  background-color: transparent;
+  color: var(--gris-claro);
+  border: 1.5px solid rgba(232, 224, 213, 0.25);
+  padding: 0.5rem 1.05rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.header-boton-salir:hover {
+  border-color: var(--naranja-llama);
+  color: var(--naranja-llama);
+  background-color: rgba(255, 107, 26, 0.08);
+}
+
+.header-boton-registro {
+  background: linear-gradient(135deg, var(--rojo-brasa), var(--naranja-llama));
+  color: white;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(178, 34, 34, 0.35);
+  border: none;
+}
+
+.header-boton-registro:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 107, 26, 0.5);
+  color: white;
+  text-decoration: none;
+}
+
+
+@media (max-width: 900px) {
+  .header-saludo {
+    padding-left: 1rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .header-contenedor {
+    padding: 0 1rem;
+  }
+
+  .header-logo-wrap {
+    height: 52px;
+    min-width: 72px;
+    padding: 4px 10px;
+  }
+
+  .header-nombre-marca {
+    font-size: 1.15rem;
+  }
+
+  .header-izquierda {
+    gap: 1rem;
+  }
+
+  .header-saludo {
+    padding-left: 0;
+    border-left: none;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .header-nav {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-nombre-marca {
+    display: none;
+  }
+
+  .header-saludo {
+    font-size: 0.8rem;
+  }
+}

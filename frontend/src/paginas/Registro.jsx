@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAutenticacion } from '../contextos/ContextoAutenticacion';
-import '../estilos/formularios.css';
+import '../estilos/Formularios.css';
 
 function Registro() {
   const { registrarse } = useAutenticacion();

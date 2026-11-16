@@ -99,7 +99,7 @@ async function conectarBaseDatos() {
         schemaMap: esquemaCifrado,
         extraOptions: {
          
-          cryptSharedLibPath: path.join(__dirname, '..', 'mongo_crypt_v1.dll'),
+          cryptSharedLibPath: process.env.MONGODB_CRYPT_SHARED_LIB_PATH || path.join(__dirname, '..', 'mongo_crypt_v1.dll'),
         },
       },
     });
@@ -129,7 +129,7 @@ async function conectarConCifrado() {
       kmsProviders: proveedorKms,
       schemaMap: esquemaCifrado,
       extraOptions: {
-        cryptSharedLibPath: path.join(__dirname, '..', 'mongo_crypt_v1.dll'),
+       cryptSharedLibPath: process.env.MONGODB_CRYPT_SHARED_LIB_PATH || path.join(__dirname, '..', 'mongo_crypt_v1.dll'),
       },
     },
   });
